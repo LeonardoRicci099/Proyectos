@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% block body %}
+
+<h2 class="titulo_actuales" style="margin-top: 70px">Realice su reserva</h2>
+
+<div class="contenedor_reserv_fin"  >
+
+<div class="cont_precio_final">
+    <h3 class="titulo_precio_final">Precios</h3>
+    <p class="precio_final">Precio Adulto: ${{ precio_adulto }}</p>
+    <p class="precio_final">Precio Niño: ${{ precio_ninio }}</p>
+
+</div>
+    <div class="contenedor_edit_reservas">
+
+        <form  class="formulario_reserva" action="" method="post">
+
+            <label class="text_form_reserv" for="reserva_desde">Fecha de inicio de la reserva</label>
+                <input type="datetime-local" class="input_form_fechas" id="reserva_desde" name="reserva_desde">
+
+            <label class="text_form_reserv" for="reserva_hasta">Fecha de finalizacion de la reserva</label>
+                <input type="datetime-local" class="input_form_fechas" id="reserva_hasta" name="reserva_hasta">
+
+
+            <label class="text_form_reserv" for="cantidad_de_adultos"> Cantidad de adultos</label>
+            <input class="input_form" type="number" id="cantidad_de_adultos" name="cantidad_de_adultos" min="0" placeholder="0">
+
+            <label class="text_form_reserv" for="cantidad_de_niños"> Cantidad de niños</label>
+            <input class="input_form" type="number" id="cantidad_de_niños" name="cantidad_de_niños" min="0" placeholder="0">
+
+
+        <button type="submit" class="boton_confirmar" id="boton_confirmar">Confirmar reserva</button>
+    </form>
+    </div>
+
+
+<div class="contenedor_reservas_no_disponibles">
+    <h4 class="titulo_reservas_no_disponibles">Fechas NO Disponibles</h4>
+   <table class="tabla_habitaciones_2">
+                <thead class="thead_hab">
+                <tr>
+                    <th class="th_l">Desde</th>
+                    <th class="th_l">Hasta</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for fechas in filtrado_no_disponibles %}
+                    <tr>
+                        <td class="td_hab_l">{{ fechas.Desde }}</td>
+                        <td class="td_hab_l">{{ fechas.Hasta }}</td>
+                    </tr>
+                {% endfor %}
+
+                </tbody>
+
+            </table>
+
+</div>
+
+
+</div>
+
+
+
+{% endblock %}

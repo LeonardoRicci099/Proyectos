@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+    <h1 class="titulo_actuales">Hoteles disponibles en todo el pais</h1>
+
+    <div class="contenedor_reser2">
+        <h1 class="reservas_title"></h1>
+        {% for hotel, imagen in hoteles_imagenes %}
+
+            <!-- todas las reservas-->
+            <div class="contenedor-hoteles-disponibles">
+                <div>
+                    <img class="muestra" src="{{ url_for('static', filename = "img/ImgHotelesBD/"+imagen.ImgHotel) }}" alt="">
+                </div>
+                <div class="info-lugar-hoteles">
+                    <h3 class="reservas_titulo">{{ hotel.Nombre }} </h3>
+                    <p>{{ hotel.Localidad }}</p>
+                    <p>{{ hotel.Provincia }}</p>
+                    <p>{{ hotel.Direccion }}</p>
+                </div>
+                <div class="contenedor-reservar-ahora">
+                    <button type="button" onclick="location.href='{{ url_for('book_hotel',HotelID=hotel.HotelID,_external=True) }}'" class="reservar_ahora">Reservar ahora</button>
+                </div>
+            </div>
+
+        {% endfor %}
+    </div>
+
+   {% endblock %}
